@@ -1,6 +1,7 @@
 package controllers;
 
 import core.Controller;
+import views.EliminarEventoView;
 import views.EventListView;
 import views.HomeView;
 import views.NewEventView;
@@ -16,8 +17,8 @@ public class HomeController extends Controller
 	//-----------------------------------------------------------------------
 	private HomeView homeView;
 	private EventListController eventListController = new EventListController();
-	private NewEventController newEventController = new NewEventController(eventListController);
-	
+	private EliminarEventoController eliminarEventoController = new EliminarEventoController();
+	private NewEventController newEventController = new NewEventController(eventListController, eliminarEventoController);
 	
 	//-----------------------------------------------------------------------
 	//		Methods
@@ -27,6 +28,7 @@ public class HomeController extends Controller
 	{
 		// Initializes others controllers
 		eventListController.run();
+		eliminarEventoController.run();
 		newEventController.run();
 		
 		// Initializes HomeView
@@ -49,5 +51,8 @@ public class HomeController extends Controller
 	public NewEventView getNewEventView()
 	{
 		return newEventController.getView();
+	}
+
+	public EliminarEventoView getEliminarEventoView() { return eliminarEventoController.getView();
 	}
 }

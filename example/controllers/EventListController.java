@@ -69,7 +69,7 @@ public class EventListController extends Controller
 		nameColumns.add("Frequency");
 		nameColumns.add("E-mail");
 		nameColumns.add("Alarm");
-		
+
 		return nameColumns;
 	}
 	

@@ -19,21 +19,23 @@ public class NewEventController extends Controller
 	//-----------------------------------------------------------------------
 	private NewEventView newEventView;
 	private EventListController eventListController;
+	private EliminarEventoController eliminarEventoController;
 
 	
 	//-----------------------------------------------------------------------
 	//		Constructor
 	//-----------------------------------------------------------------------
 	/**
-	 * Responsible for create a {@link SchedulerEvent new event}. 
-	 * 
-	 * @param eventListController {@link EventListController}, because it will 
-	 * add new events created in {@link NewEventView}.
+	 * Responsible for create a {@link SchedulerEvent new event}.
+	 *
+	 * @param eventListController      {@link EventListController}, because it will
+	 *                                 add new events created in {@link NewEventView}.
+	 * @param eliminarEventoController
 	 */
-	public NewEventController(EventListController eventListController) 
+	public NewEventController(EventListController eventListController, EliminarEventoController eliminarEventoController)
 	{
 		this.eventListController = eventListController;
-		
+		this.eliminarEventoController = eliminarEventoController;
 	}
 	
 	
@@ -48,8 +50,9 @@ public class NewEventController extends Controller
 	
 	/**
 	 * Creates a new {@link SchedulerEvent} and puts it on {@link EventListView}.
-	 * 
+	 *
 	 * @param event Event to be added
+	 * @return
 	 */
 	public void addEvent(SchedulerEvent event)
 	{
@@ -65,11 +68,19 @@ public class NewEventController extends Controller
 			schedulerIO.attach(newEventView);
 			schedulerIO.saveEvent(event);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "ERROR", e.getMessage(), JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
-		
-		
+
 		eventListController.addNewRow(metadata);
+
+		Object[] metadataRemove = new Object[6];
+		metadataRemove[0] = metadata[0];
+		metadataRemove[1] = metadata[1];
+		metadataRemove[2] = metadata[2];
+		metadataRemove[3] = metadata[3];
+		metadataRemove[4] = metadata[4];
+		metadataRemove[5] = false;
+		eliminarEventoController.addNewRow(metadataRemove);
 	}
 	
 	

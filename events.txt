@@ -1,2 +1,3 @@
-09/12/2234;test;DAILY;t@t.com;0
-12/11/1111;sdaasdas;DAILY;1@2.com;0
+05/22/2029;cumple;DAILY;aaa;1
+05/22/2019;cumple;WEEKLY;aaa;1
+02/19/2017;fiesta;MONTHLY;bbbb;1
