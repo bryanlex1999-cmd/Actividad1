@@ -209,13 +209,20 @@ public class NewEventView extends JPanel implements View
 		btn_save.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+
+				if (tf_eventDesc.getText().isEmpty() || tf_forwardEmail.getText().isEmpty()
+						|| tf_date.getText().replace("/", "").trim().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+					return;
+				}
+
 				SchedulerEvent event = new SchedulerEvent();
-				
+
 				event.setDate(SchedulerUtil.getDateFromString(tf_date.getText()));
 				event.setEventDesc(tf_eventDesc.getText());
 				event.setAlarm(cbx_alarm.isSelected() ? true : false);
 				event.setFwdEmail(tf_forwardEmail.getText());
-				
+
 				if (rbtn_daily.isSelected()) {
 					event.setFrequency(Frequency.DAILY);
 				} else if (rbtn_weekly.isSelected()) {
@@ -223,13 +230,13 @@ public class NewEventView extends JPanel implements View
 				} else {
 					event.setFrequency(Frequency.MONTHLY);
 				}
-				
+
 				newEventController.addEvent(event);
 				cleanFields();
 			}
 		});
 	}
-	
+
 	/**
 	 * Creates clear button.
 	 */
