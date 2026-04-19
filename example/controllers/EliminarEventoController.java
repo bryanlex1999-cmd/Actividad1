@@ -135,6 +135,8 @@ public class EliminarEventoController extends Controller
         return data;
     }
 
-    public void addNewRow(Object[] metadataRemove) {
+    public void addNewRow(Object[] values)
+    {
+        ((DefaultTableModel) table.getModel()).addRow(values);
     }
 }
